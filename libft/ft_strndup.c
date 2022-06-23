@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wyu <wyu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/22 16:17:21 by wyu               #+#    #+#             */
-/*   Updated: 2022/06/23 16:46:25 by wyu              ###   ########.fr       */
+/*   Created: 2022/06/23 14:21:49 by wyu               #+#    #+#             */
+/*   Updated: 2022/06/23 14:34:25 by wyu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#include "pipex.h"
-
-int main(int argc, char **argv, char **envp)
+char	*ft_strndup(const char *s, int n)
 {
-	int infile;
-	int outfile;
+	int		i;
+	int		len;
+	char	*new_s;
 
-	if (argc != 5)
-	{
-		perror("Argument error");
-		return (1);
-	}
-	infile = open_file(argv[1], INFILE);
-	outfile = open_file(argv[4], OUTFILE);
-	change_standardstream(infile, outfile);
-	redirect(argv[2], envp);
-	transform_process(argv[3], envp);
-	perror("Do not perform function");
-	return (1);
+	if (n <= 0)
+		return (NULL);
+	len = ft_strlen(s);
+	if (len < n)
+		n = len;
+	new_s = (char *)malloc(sizeof(n + 1) * sizeof(char));
+	if (!new_s)
+		return (NULL);
+	i = -1;
+	while (++i < n)
+		new_s[i] = s[i];
+	new_s[n] = '\0';
+	return (new_s);
 }

@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_strchdup.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wyu <wyu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/22 16:17:21 by wyu               #+#    #+#             */
-/*   Updated: 2022/06/23 16:46:25 by wyu              ###   ########.fr       */
+/*   Created: 2022/06/23 14:19:40 by wyu               #+#    #+#             */
+/*   Updated: 2022/06/23 14:33:42 by wyu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#include "pipex.h"
-
-int main(int argc, char **argv, char **envp)
+char	*ft_strchdup(const char *s, int c)
 {
-	int infile;
-	int outfile;
+	int	i;
 
-	if (argc != 5)
-	{
-		perror("Argument error");
-		return (1);
-	}
-	infile = open_file(argv[1], INFILE);
-	outfile = open_file(argv[4], OUTFILE);
-	change_standardstream(infile, outfile);
-	redirect(argv[2], envp);
-	transform_process(argv[3], envp);
-	perror("Do not perform function");
-	return (1);
+	i = -1;
+	while (s[++i] && s[i] != c)
+		;
+	return (ft_strndup(s, i));
 }
