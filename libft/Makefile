@@ -6,7 +6,7 @@
 #    By: wyu <wyu@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/01 20:56:45 by wyu               #+#    #+#              #
-#    Updated: 2022/06/23 14:35:39 by wyu              ###   ########.fr        #
+#    Updated: 2022/06/24 15:30:33 by wyu              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,11 +40,11 @@ LIB_OBJS_APPEND= $(LIB_SRCS_APPEND:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(LIB_OBJS)
+$(NAME): $(LIB_OBJS) $(LIB_OBJS_BONUS) $(LIB_OBJS_APPEND)
 			$(AR) $@ $^
 
-.c.o:	$(LIB_SRCS)
-		$(CC) $(CFLAGS) -c -o $@ $<
+.c.o:	$(LIB_SRCS) $(LIB_OBJS_BONUS) $(LIB_OBJS_APPEND)
+		$(CC) $(CFLAGS) -c -o $@ $^
 
 clean:
 		$(RM) $(LIB_OBJS) $(LIB_OBJS_BONUS) $(LIB_OBJS_APPEND)
@@ -54,7 +54,4 @@ fclean: clean
 
 re: clean all
 
-bonus: $(LIB_OBJS_BONUS) $(LIB_OBJS_APPEND)
-		$(AR) $(NAME) $^
-
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re

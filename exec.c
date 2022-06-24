@@ -6,7 +6,7 @@
 /*   By: wyu <wyu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 16:45:21 by wyu               #+#    #+#             */
-/*   Updated: 2022/06/23 18:33:28 by wyu              ###   ########.fr       */
+/*   Updated: 2022/06/24 23:51:43 by wyu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void transform_process(char *cmd, char **envp)
 	if (ft_strchr(cmd, '/'))
 		filepath = argv[0];
 	else
-		filepath = get_path(cmd, envp);
+		filepath = get_path(argv[0], envp);
 	execve(filepath, argv, envp);
 	perror("Failed to switch process");
 	exit(1);

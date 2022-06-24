@@ -6,7 +6,7 @@
 #    By: wyu <wyu@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/08 14:16:14 by wyu               #+#    #+#              #
-#    Updated: 2022/06/23 18:44:02 by wyu              ###   ########.fr        #
+#    Updated: 2022/06/24 22:57:26 by wyu              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,30 +16,42 @@ AR 		= ar rcs
 RM 		= rm -f
 
 NAME 		= pipex
-LIBFT 		= libft
+
+PIPE_LIBFT	= pipex.a
+
 LIBFT_NAME 	= libft.a
+LIBFT 		= libft
 
-FILE 		=  descriptor exec pipex
+REMAIN 		= descriptor exec
 
-SRCS		= $(patsubst %, %.c, $(FILE))
-OBJS 		= $(SRCS:.c=.o)
+REMAIN_SRCS	= $(patsubst %, %.c, $(REMAIN))
 
-.PHONY : all clean fclean re bonus
+REMAIN_OBJS = $(REMAIN_SRCS:.c=.o)
+
+.PHONY : all clean fclean re
 
 all : $(NAME)
 
-$(NAME) : $(OBJS)
-		$(AR) $@ $(OBJS)
+$(NAME) : $(PIPE_LIBFT)
+		$(CC) $(CFLAGS) pipex.c -o $@ $<
 
-$(OBJS) : $(SRCS)
+$(PIPE_LIBFT) : $(REMAIN_OBJS) $(LIBFT)/$(LIBFT_NAME)
+		$(AR) $@ $(REMAIN_OBJS)
+
+$(LIBFT)/$(LIBFT_NAME) :
+		make all -C $(LIBFT)
+		cp $(LIBFT)/$(LIBFT_NAME) $(PIPE_LIBFT)
+
+$(REMAIN_OBJS) : $(REMAIN_SRCS)
 		$(CC) $(CFLAGS) -c $^
 
 clean :
-		$(RM) $(OBJS)
+		$(RM) $(REMAIN_OBJS) $(PIPE_LIBFT)
 		make clean -C $(LIBFT)
 
 fclean : clean
 		$(RM) $(NAME)
+		make fclean -C $(LIBFT)
 
 bonus : all
 
