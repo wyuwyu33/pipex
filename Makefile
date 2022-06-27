@@ -6,7 +6,7 @@
 #    By: wyu <wyu@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/08 14:16:14 by wyu               #+#    #+#              #
-#    Updated: 2022/06/27 20:19:32 by wyu              ###   ########.fr        #
+#    Updated: 2022/06/27 21:14:08 by wyu              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,11 +36,11 @@ $(NAME) : $(PIPE_LIBFT)
 		$(CC) $(CFLAGS) pipex.c -o $@ $<
 
 $(PIPE_LIBFT) : $(REMAIN_OBJS) $(LIBFT)/$(LIBFT_NAME)
+		cp $(LIBFT)/$(LIBFT_NAME) $(PIPE_LIBFT)
 		$(AR) $@ $(REMAIN_OBJS)
 
 $(LIBFT)/$(LIBFT_NAME) :
 		make all -C $(LIBFT)
-		cp $(LIBFT)/$(LIBFT_NAME) $(PIPE_LIBFT)
 
 $(REMAIN_OBJS) : $(REMAIN_SRCS)
 		$(CC) $(CFLAGS) -c $^
