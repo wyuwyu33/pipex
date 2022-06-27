@@ -6,13 +6,13 @@
 /*   By: wyu <wyu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 16:44:58 by wyu               #+#    #+#             */
-/*   Updated: 2022/06/24 23:48:45 by wyu              ###   ########.fr       */
+/*   Updated: 2022/06/27 17:16:40 by wyu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int open_file(char *filename, int file_type)
+int	open_file(char *filename, int file_type)
 {
 	if (file_type == INFILE)
 	{
@@ -29,7 +29,7 @@ int open_file(char *filename, int file_type)
 	exit(1);
 }
 
-void change_standardstream(int input, int output)
+void	change_standardstream(int input, int output)
 {
 	dup2(input, STDIN);
 	dup2(output, STDOUT);
@@ -37,10 +37,10 @@ void change_standardstream(int input, int output)
 	close(output);
 }
 
-int dup_pipe(int fd[2], int stream)
+int	dup_pipe(int fd[2], int stream)
 {
-	int close_fd;
-	int result;
+	int	close_fd;
+	int	result;
 
 	close_fd = (stream + 1) % 2;
 	close(fd[close_fd]);
@@ -54,10 +54,10 @@ int dup_pipe(int fd[2], int stream)
 	return (result);
 }
 
-void redirect(char *cmd, char **envp)
+void	redirect(char *cmd, char **envp)
 {
-	int fd[2];
-	int pid;
+	int	fd[2];
+	int	pid;
 
 	if (pipe(fd) == -1)
 	{

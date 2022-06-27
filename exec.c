@@ -6,16 +6,16 @@
 /*   By: wyu <wyu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 16:45:21 by wyu               #+#    #+#             */
-/*   Updated: 2022/06/24 23:51:43 by wyu              ###   ########.fr       */
+/*   Updated: 2022/06/27 17:17:43 by wyu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char *parse_path(char *path, char *cmd)
+char	*parse_path(char *path, char *cmd)
 {
-	char *result;
-	char *tmp;
+	char	*result;
+	char	*tmp;
 
 	result = ft_strchdup(path, ':');
 	tmp = ft_strjoin(result, "/");
@@ -25,11 +25,11 @@ char *parse_path(char *path, char *cmd)
 	return (result);
 }
 
-char *get_path(char *cmd, char **envp)
+char	*get_path(char *cmd, char **envp)
 {
-	int i;
-	char *path;
-	char *result;
+	int		i;
+	char	*path;
+	char	*result;
 
 	i = -1;
 	while (envp[++i] && ft_strncmp(envp[i], "PATH=", ft_strlen("PATH=")))
@@ -45,16 +45,16 @@ char *get_path(char *cmd, char **envp)
 		free(result);
 		path = ft_strchr(path, ':');
 		if (!path)
-			break;
+			break ;
 		path++;
 	}
 	return (cmd);
 }
 
-void transform_process(char *cmd, char **envp)
+void	transform_process(char *cmd, char **envp)
 {
-	char **argv;
-	char *filepath;
+	char	**argv;
+	char	*filepath;
 
 	argv = ft_split(cmd, ' ');
 	if (ft_strchr(cmd, '/'))

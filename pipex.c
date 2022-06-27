@@ -6,17 +6,16 @@
 /*   By: wyu <wyu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 16:17:21 by wyu               #+#    #+#             */
-/*   Updated: 2022/06/24 23:51:12 by wyu              ###   ########.fr       */
+/*   Updated: 2022/06/27 17:21:03 by wyu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "pipex.h"
 
-int main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
-	int infile;
-	int outfile;
+	int	infile;
+	int	outfile;
 
 	if (argc != 5)
 	{
