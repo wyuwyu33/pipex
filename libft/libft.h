@@ -6,7 +6,7 @@
 /*   By: wyu <wyu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 17:24:47 by wyu               #+#    #+#             */
-/*   Updated: 2022/06/27 17:20:27 by wyu              ###   ########.fr       */
+/*   Updated: 2022/06/27 21:20:22 by wyu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,5 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-
-// Append Part
-char	*ft_strchdup(const char *s, int c);
-char	*ft_strndup(const char *s, int n);
 
 #endif

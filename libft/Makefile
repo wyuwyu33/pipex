@@ -6,7 +6,7 @@
 #    By: wyu <wyu@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/01 20:56:45 by wyu               #+#    #+#              #
-#    Updated: 2022/06/24 15:30:33 by wyu              ###   ########.fr        #
+#    Updated: 2022/06/27 21:20:46 by wyu              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,27 +27,23 @@ LIBFT_PART2= ft_substr ft_strjoin ft_strtrim ft_split ft_itoa\
 LIBFT_BONUS= ft_lstnew ft_lstadd_front ft_lstsize ft_lstlast ft_lstadd_back\
 				ft_lstdelone ft_lstclear ft_lstiter ft_lstmap
 
-LIBFT_APPEND= ft_strchdup ft_strndup
-
 NAME= libft.a
 LIB_SRCS= $(patsubst %, %.c, $(LIBFT_PART1)) $(patsubst %, %.c, $(LIBFT_PART2))
 LIB_SRCS_BOUNUS= $(patsubst %, %.c, $(LIBFT_BONUS))
-LIB_SRCS_APPEND= $(patsubst %, %.c, $(LIBFT_APPEND))
 
 LIB_OBJS= $(LIB_SRCS:.c=.o)
 LIB_OBJS_BONUS= $(LIB_SRCS_BOUNUS:.c=.o)
-LIB_OBJS_APPEND= $(LIB_SRCS_APPEND:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(LIB_OBJS) $(LIB_OBJS_BONUS) $(LIB_OBJS_APPEND)
+$(NAME): $(LIB_OBJS) $(LIB_OBJS_BONUS)
 			$(AR) $@ $^
 
-.c.o:	$(LIB_SRCS) $(LIB_OBJS_BONUS) $(LIB_OBJS_APPEND)
+.c.o:	$(LIB_SRCS) $(LIB_OBJS_BONUS)
 		$(CC) $(CFLAGS) -c -o $@ $^
 
 clean:
-		$(RM) $(LIB_OBJS) $(LIB_OBJS_BONUS) $(LIB_OBJS_APPEND)
+		$(RM) $(LIB_OBJS) $(LIB_OBJS_BONUS)
 
 fclean: clean
 		$(RM) $(NAME)
